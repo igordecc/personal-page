@@ -2,7 +2,7 @@ attrs==20.2.0
 click==7.1.2
 coverage==5.3
 Flask==1.1.2
--e git+git@github.com:igordecc/personal-page.git@7bd200f3c078f8ae55890359292982cf09823115#egg=flaskr
+-e git+https@github.com:igordecc/personal-page.git@7bd200f3c078f8ae55890359292982cf09823115#egg=flaskr
 gunicorn==20.0.4
 importlib-metadata==1.7.0
 iniconfig==1.0.1
