@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 
-def create_app(test_config=None):
+def create_app(test_config=None, *args, **kwargs):
     # create and configure the app
     # created app will be a global class object
     app = Flask(__name__, instance_relative_config=True)
