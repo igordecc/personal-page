@@ -3,39 +3,34 @@ import os
 from flask import Flask
 
 def create_app(test_config=None, *args, **kwargs):
-    # create and configure the app
-    # created app will be a global class object
-    app = Flask(__name__, instance_relative_config=True)
+    # app factory
+    # create_app is global class object and very important
+
+    app = Flask(__name__, instance_relative_config=True)  # futher is standart shaman setup to ubu-dubu defaults, lul
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, ' flaskr.sqlite'),   
+        DATABASE=os.path.join(app.instance_path, ' flaskr.postgresql')
     )
 
     if test_config is None:
-        # load the instance conffig, if it exists, when not testing
+        # load real config
         app.config.from_pyfile('config.py', silent=True)
     else:
-        # Load the test config if passed in
+        # load test config
         app.config.from_mapping(test_config)
-    # ensure the insstance folder exists
+    # ensure instance folder exist. What is the instance anyway?
     try:
-        os.makedirs(app.instance_path)
+        os.makeddirs(app.instance_path)
     except OSError:
-        pass
+        print("no instance path, for some reason. Debug __init__.py")
 
-    # a simple page that says hello
+    # simple page that says hello. We stopping on that, and making postgres now.
     @app.route('/hello')
     def hello():
-        return 'Hello, World!'
+        return 'Hello, World! And make me postgres output-> ___'
 
+    # next part is initing db. It was sqlite. Now make postgres from it.
+    """
     from . import db
     db.init_app(app)
-    
-    from . import auth
-    app.register_blueprint(auth.bp)
-
-    from . import blog
-    app.register_blueprint(blog.bp)
-    app.add_url_rule('/', endpoint='index')
-        
-    return app
+    """
